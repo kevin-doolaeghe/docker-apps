@@ -20,8 +20,8 @@ Add following labels to containers :
 
 | Name | Value |
 | --- | --- |
-| `traefik.enable` | `true` |
-| `traefik.http.routers.<package-name>.entrypoints` | `web, websecure` |
-| `traefik.http.routers.<package-name>.rule` | `Host('kde.<package-name>.com')` |
-| `traefik.http.routers.<package-name>.tls` | `true` |
-| `traefik.http.routers.<package-name>.tls.certresolver` | `production` |
+| traefik.enable | `true` |
+| traefik.http.routers.<package-name>.entrypoints | `web, websecure` |
+| traefik.http.routers.<package-name>.rule | `Host('kde.<package-name>.com')` |
+| traefik.http.routers.<package-name>.tls | `true` |
+| traefik.http.routers.<package-name>.tls.certresolver | `production` |
