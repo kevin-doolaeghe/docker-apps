@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    restart: always
+    environment:
+      TZ: "Europe/Paris"
+      WEBPASSWORD: "admin"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.pihole.entrypoints: "web, websecure"
+      traefik.http.routers.pihole.rule: "Host(`kde.pihole.com`)"
+      traefik.http.routers.pihole.tls: "true"
+      traefik.http.routers.pihole.tls.certresolver: "production"
+    ports:
+      - "53:53"
+    networks:
+      - local
+    volumes:
+      - pihole_config:/etc/pihole
+      - pihole_dnsmasq:/etc/dnsmasq.d
+
+volumes:
+  pihole_config:
+  pihole_dnsmasq:
+
+networks:
+  local:
