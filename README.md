@@ -1,6 +1,6 @@
 # Docker applications & tools
 
-:triangular_flag_on_post: `docker` & `docker-compose` application packages
+:triangular_flag_on_post: **docker** & **docker-compose** application packages.
 
 ## Author
 

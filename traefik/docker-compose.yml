@@ -13,12 +13,14 @@ services:
     networks:
       - local
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yml:/etc/traefik/traefik.yml
-      - traefik_data:/etc/traefik
+      - traefik_config:/etc/traefik
+      - traefik_certs:/ssl-certs
 
 volumes:
-  traefik_data:
+  traefik_config:
+  traefik_certs:
 
 networks:
   local:

@@ -38,10 +38,10 @@ entryPoints:
   #   address: :8080
 
 # -- Configure your CertificateResolver here...
-# certificatesResolvers:
+certificatesResolvers:
   staging:
     acme:
-      email: your-email@example.com
+      email: doolaeghe.kevin@gmail.com
       storage: /etc/traefik/certs/acme.json
       caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
 #       -- (Optional) Remove this section, when using DNS Challenge
@@ -55,7 +55,7 @@ entryPoints:
 #           - "8.8.8.8:53"
   production:
     acme:
-      email: your-email@example.com
+      email: doolaeghe.kevin@gmail.com
       storage: /etc/traefik/certs/acme.json
       caServer: "https://acme-v02.api.letsencrypt.org/directory"
 #       -- (Optional) Remove this section, when using DNS Challenge
