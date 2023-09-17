@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  traefik:
+    container_name: traefik
+    image: traefik:v2.10
+    restart: always
+    command: --api.insecure=true --providers.docker    
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    networks:
+      - local
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/etc/traefik/traefik.yml
+      - traefik_data:/etc/traefik
+
+volumes:
+  traefik_data:
+
+networks:
+  local:
