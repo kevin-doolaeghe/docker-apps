@@ -41,7 +41,6 @@ services:
       retries: 3
       start_period: 40s
     volumes:
-      - ./dashy.yml:/app/public/conf.yml
       - dashy_config:/app/public
     networks:
       - local
