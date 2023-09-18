@@ -1,0 +1,119 @@
+version: "3.8"
+
+services:
+  # Nginx Proxy Manager
+  nginxproxymanager:
+    container_name: nginxproxymanager
+    image: jc21/nginx-proxy-manager:latest
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    volumes:
+      - nginxproxymanager_data:/data
+      - nginxproxymanager_certs:/etc/letsencrypt
+    networks:
+      - local
+  # Portainer
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - local
+  # Home Assistant
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart: always
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - homeassistant_config:/config
+    networks:
+      - local
+  # Grafana
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    restart: always
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - local
+  # InfluxDB
+  influxdb:
+    container_name: influxdb
+    image: influxdb:1.8-alpine
+    restart: always
+    environment:
+      - INFLUXDB_DB=influxdb
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+    networks:
+      - local
+  # MariaDB
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=mariadb
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - local
+  # Pi-Hole
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    restart: always
+    environment:
+      - TZ=Europe/Paris
+      - WEBPASSWORD=admin
+    ports:
+      - 53:53
+    volumes:
+      - pihole_config:/etc/pihole
+      - pihole_dnsmasq:/etc/dnsmasq.d
+    networks:
+      - local
+  # Guacamole
+  guacamole:
+    container_name: guacamole
+    image: oznu/guacamole
+    restart: always
+    volumes:
+      - guacamole_config:/config
+    networks:
+      - local
+
+volumes:
+  nginxproxymanager_data:
+  nginxproxymanager_certs:
+  portainer_data:
+  homeassistant_config:
+  grafana_data:
+  influxdb_data:
+  mariadb_data:
+  pihole_config:
+  pihole_dnsmasq:
+  guacamole_config:
+
+networks:
+  local:

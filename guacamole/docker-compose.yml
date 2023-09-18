@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  guacamole:
+    container_name: guacamole
+    image: oznu/guacamole
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - guacamole_config:/config
+    networks:
+      - local
+
+volumes:
+  guacamole_config:
+
+networks:
+  local:
+    name: local
+    external: true
