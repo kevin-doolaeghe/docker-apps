@@ -3,20 +3,21 @@ version: "3.8"
 services:
   traefik:
     container_name: traefik
-    image: traefik:v2.10
+    image: traefik:v3.0
     restart: always
-    command: --api.insecure=true --providers.docker    
+    environment:
+      DUCKDNS_TOKEN: "00000000-0000-0000-0000-000000000000"
     ports:
-      - "80:80"
-      - "443:443"
-      - "8080:8080"
-    networks:
-      - local
+      - 80:80
+      - 443:443
+      - 8080:8080
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yml:/etc/traefik/traefik.yml
       - traefik_config:/etc/traefik
-      - traefik_certs:/ssl-certs
+      - traefik_certs:/letsencrypt
+    networks:
+      - local
 
 volumes:
   traefik_config:
@@ -24,3 +25,5 @@ volumes:
 
 networks:
   local:
+    name: local
+    external: true

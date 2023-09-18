@@ -6,21 +6,16 @@ services:
     image: pihole/pihole:latest
     restart: always
     environment:
-      TZ: "Europe/Paris"
-      WEBPASSWORD: "admin"
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.pihole.entrypoints: "web, websecure"
-      traefik.http.routers.pihole.rule: "Host(`kde.pihole.com`)"
-      traefik.http.routers.pihole.tls: "true"
-      traefik.http.routers.pihole.tls.certresolver: "production"
+      - TZ=Europe/Paris
+      - WEBPASSWORD=admin
     ports:
-      - "53:53"
-    networks:
-      - local
+      - 80:80
+      - 53:53
     volumes:
       - pihole_config:/etc/pihole
       - pihole_dnsmasq:/etc/dnsmasq.d
+    networks:
+      - local
 
 volumes:
   pihole_config:
@@ -28,3 +23,5 @@ volumes:
 
 networks:
   local:
+    name: local
+    external: true
