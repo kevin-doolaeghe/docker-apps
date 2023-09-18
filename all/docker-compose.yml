@@ -25,6 +25,26 @@ services:
       - portainer_data:/data
     networks:
       - local
+  # Dashy
+  dashy:
+    container_name: dashy
+    image: lissy93/dashy
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - UID=1000
+      - GID=100
+    healthcheck:
+      test: ['CMD', 'node', '/app/services/healthcheck']
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    volumes:
+      - ./dashy.yml:/app/public/conf.yml
+      - dashy_config:/app/public
+    networks:
+      - local
   # Home Assistant
   homeassistant:
     container_name: homeassistant
@@ -107,6 +127,7 @@ volumes:
   nginxproxymanager_data:
   nginxproxymanager_certs:
   portainer_data:
+  dashy_config:
   homeassistant_config:
   grafana_data:
   influxdb_data:
