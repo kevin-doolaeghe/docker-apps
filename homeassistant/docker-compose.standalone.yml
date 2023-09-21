@@ -6,6 +6,8 @@ services:
     image: ghcr.io/home-assistant/home-assistant:stable
     restart: always
     privileged: true
+    ports:
+      - 8123:8123
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - homeassistant_config:/config

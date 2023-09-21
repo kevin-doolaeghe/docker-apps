@@ -15,7 +15,10 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    ports:
+      - 80:80
     volumes:
+      - ./dashy.yml:/app/public/conf.yml
       - dashy_config:/app/public
     networks:
       - local

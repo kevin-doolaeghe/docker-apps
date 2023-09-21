@@ -5,6 +5,8 @@ services:
     container_name: guacamole
     image: oznu/guacamole
     restart: always
+    ports:
+      - 8080:8080
     volumes:
       - guacamole_config:/config
     networks:

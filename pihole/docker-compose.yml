@@ -8,9 +8,6 @@ services:
     environment:
       - TZ=Europe/Paris
       - WEBPASSWORD=admin
-    ports:
-      - 80:80
-      - 53:53
     volumes:
       - pihole_config:/etc/pihole
       - pihole_dnsmasq:/etc/dnsmasq.d
