@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - local
+
+volumes:
+  portainer_data:
+
+networks:
+  local:
+    name: local
+    external: true

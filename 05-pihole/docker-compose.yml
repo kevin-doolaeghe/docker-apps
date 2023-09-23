@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    restart: always
+    environment:
+      - TZ=Europe/Paris
+      - WEBPASSWORD=admin
+    volumes:
+      - pihole_config:/etc/pihole
+      - pihole_dnsmasq:/etc/dnsmasq.d
+    networks:
+      - local
+
+volumes:
+  pihole_config:
+  pihole_dnsmasq:
+
+networks:
+  local:
+    name: local
+    external: true
