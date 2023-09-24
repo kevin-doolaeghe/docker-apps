@@ -20,5 +20,3 @@ volumes:
 
 networks:
   local:
-    name: local
-    external: true
