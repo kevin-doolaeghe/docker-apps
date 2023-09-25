@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  telegraf:
+    container_name: telegraf
+    image: telegraf
+    restart: always
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    networks:
+      - local
+
+networks:
+  local:
+    name: local
+    external: true

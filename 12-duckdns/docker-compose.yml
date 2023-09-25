@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  duckdns:
+    container_name: duckdns
+    image: lscr.io/linuxserver/duckdns:latest
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      - SUBDOMAINS=<subdomain1>,<subdomain2>
+      - TOKEN=<token>
+      - LOG_FILE=false
+    volumes:
+      - duckdns_config:/config
+    networks:
+      - local
+
+volumes:
+  duckdns_config:
+
+networks:
+  local:
+    name: local
+    external: true

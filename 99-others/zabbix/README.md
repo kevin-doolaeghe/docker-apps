@@ -8,6 +8,13 @@
 
 ## Setup
 
+1. Pull `docker` image :
+```
+git clone https://github.com/zabbix/zabbix-docker.git
+git checkout 6.4
+```
+
+2. Install `zabbix` application :
 ```
 docker-compose -p zabbix up -d
 ```

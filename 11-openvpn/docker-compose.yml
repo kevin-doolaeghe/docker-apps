@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  openvpn:
+    container_name: openvpn
+    image: kylemanna/openvpn:latest
+    restart: always
+    ports:
+      - 1194:1194/udp
+    volumes:
+      - openvpn_data:/etc/openvpn
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - local
+
+volumes:
+  openvpn_data:
+
+networks:
+  local:
