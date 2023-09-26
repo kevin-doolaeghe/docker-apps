@@ -26,7 +26,7 @@ ufw allow 1194/udp comment 'openvpn'
 
 4. Create a user :
 ```
-docker container run --rm -ti -v /home/docker/openvpn/data:/etc/openvpn kylemanna/openvpn:latest easyrsa build-client-full <user> nopas
+docker container run --rm -ti -v /home/docker/openvpn/data:/etc/openvpn kylemanna/openvpn:latest easyrsa build-client-full <user> nopass
 ```
 
 5. Generate the `.ovpn` certificate :
