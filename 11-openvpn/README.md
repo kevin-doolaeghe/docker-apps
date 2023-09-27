@@ -10,8 +10,8 @@
 
 1. Prepare environment :
 ```
-docker container run --rm -v openvpn_openvpn_data:/etc/openvpn kylemanna/openvpn:latest ovpn_genconfig -u udp://<domain-name>
-docker container run --rm -ti -v openvpn_openvpn_data:/etc/openvpn kylemanna/openvpn:latest ovpn_initpki
+docker run -v openvpn_data:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://<domain-name>
+docker run -v openvpn_data:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
 ```
 
 2. Setup `docker-compose` application :
@@ -26,12 +26,12 @@ ufw allow 1194/udp comment 'openvpn'
 
 4. Create a user :
 ```
-docker container run --rm -ti -v openvpn_openvpn_data:/etc/openvpn kylemanna/openvpn:latest easyrsa build-client-full <user> nopass
+docker run -v openvpn_data:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full <user> nopass
 ```
 
 5. Generate the `.ovpn` certificate :
 ```
-docker container run --rm -v openvpn_openvpn_data:/etc/openvpn kylemanna/openvpn:latest ovpn_getclient <user> > <user>.ovpn
+docker run -v openvpn_openvpn_data:/etc/openvpn --rm kylemanna/openvpn:latest ovpn_getclient <user> > <user>.ovpn
 ```
 
 :warning: This program require a docker instance to be executed.
