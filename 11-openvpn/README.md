@@ -31,7 +31,7 @@ docker run -v openvpn_data:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build
 
 5. Generate the `.ovpn` certificate :
 ```
-docker run -v openvpn_openvpn_data:/etc/openvpn --rm kylemanna/openvpn:latest ovpn_getclient <user> > <user>.ovpn
+docker run -v openvpn_data:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient <user> > <user>.ovpn
 ```
 
 :warning: This program require a docker instance to be executed.
