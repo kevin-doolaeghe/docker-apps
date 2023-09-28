@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  guacamole:
+    container_name: guacamole
+    image: oznu/guacamole
+    restart: always
+    volumes:
+      - config:/config
+    networks:
+      - local
+
+volumes:
+  config:
+
+networks:
+  local:

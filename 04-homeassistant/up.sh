@@ -1,1 +1,0 @@
-docker-compose -p homeassistant up -d

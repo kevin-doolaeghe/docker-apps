@@ -1,0 +1,46 @@
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+api:
+  dashboard: true
+  insecure: true
+
+entryPoints:
+  web:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    address: :443
+
+certificatesResolvers:
+  staging:
+    acme:
+      email: <email-address>
+      storage: /letsencrypt/acme.json
+      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      dnsChallenge:
+        provider: duckdns
+        delayBeforeCheck: 120s
+        resolvers:
+          - 99.79.143.35:53
+          - 35.182.183.211:53
+  production:
+    acme:
+      email: <email-address>
+      storage: /letsencrypt/acme.json
+      caServer: "https://acme-v02.api.letsencrypt.org/directory"
+      dnsChallenge:
+        provider: duckdns
+        delayBeforeCheck: 120s
+        resolvers:
+          - 99.79.143.35:53
+          - 35.182.183.211:53
+
+providers:
+  docker:
+    exposedByDefault: false

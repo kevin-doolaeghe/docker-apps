@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  dashy:
+    container_name: dashy
+    image: lissy93/dashy
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - config:/app/public
+    networks:
+      - local
+
+volumes:
+  config:
+
+networks:
+  local:

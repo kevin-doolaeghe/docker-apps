@@ -1,1 +1,0 @@
-docker-compose -p guacamole up -d

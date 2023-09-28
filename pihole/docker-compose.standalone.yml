@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole
+    restart: always
+    environment:
+      - TZ=$TZ
+      - WEBPASSWORD=$WEBPASSWORD
+    ports:
+      - 80:80
+      - 53:53
+    volumes:
+      - config:/etc/pihole
+      - dnsmasq:/etc/dnsmasq.d
+    networks:
+      - local
+
+volumes:
+  config:
+  dnsmasq:
+
+networks:
+  local:

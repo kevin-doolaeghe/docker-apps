@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  nginxproxymanager:
+    container_name: nginxproxymanager
+    image: jc21/nginx-proxy-manager:latest
+    restart: always
+    network_mode: bridge
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    volumes:
+      - data:/data
+      - certs:/etc/letsencrypt
+    networks:
+      - local
+
+volumes:
+  data:
+  certs:
+
+networks:
+  local:

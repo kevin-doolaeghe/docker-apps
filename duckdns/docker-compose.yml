@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  duckdns:
+    container_name: duckdns
+    image: lscr.io/linuxserver/duckdns
+    restart: always
+    environment:
+      - TZ=$TZ
+      - SUBDOMAINS=$SUBDOMAINS
+      - TOKEN=$TOKEN
+      - LOG_FILE=false
+    volumes:
+      - config:/config
+    networks:
+      - local
+
+volumes:
+  config:
+
+networks:
+  local:
