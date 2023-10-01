@@ -11,6 +11,8 @@ services:
     volumes:
       - config:/etc/pihole
       - dnsmasq:/etc/dnsmasq.d
+    ports:
+      - 53:53
     networks:
       - local
 
