@@ -3,7 +3,7 @@ version: "3.8"
 services:
   influxdb:
     container_name: influxdb
-    image: influxdb
+    image: influxdb:1.8-alpine
     restart: always
     environment:
       - INFLUXDB_DB=$INFLUXDB_DB
