@@ -18,3 +18,4 @@ docker-compose -p pihole up -d
 
 * [Pi-Hole](https://pi-hole.net/)
 * [Docker Pi-Hole](https://github.com/pi-hole/docker-pi-hole/)
+* [Ubuntu - How to free up port 53, used by `systemd-resolved`](https://www.linuxuprising.com/2020/07/ubuntu-how-to-free-up-port-53-used-by.html)
