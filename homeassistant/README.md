@@ -21,7 +21,7 @@ To access Home Assistant via a proxy, the `configuration.yaml` file must include
 http:
   use_x_forwarded_for: true
   trusted_proxies:
-    - nginxproxymanager
+    - 172.X.0.X # Proxy IP address on Docker subnet 
 ```
 
 ## References
