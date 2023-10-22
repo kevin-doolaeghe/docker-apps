@@ -28,3 +28,5 @@ http:
 
 * [Home Assistant](https://www.home-assistant.io/)
 * [Home Assistant - Docker Installation](https://www.home-assistant.io/installation/linux#docker-compose)
+* [Home Assistant - Tuya Integration](https://www.home-assistant.io/integrations/tuya/)
+* [Home Assistant - InfluxDB Integration](https://www.home-assistant.io/integrations/influxdb)
