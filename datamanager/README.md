@@ -1,7 +1,27 @@
+# Telegraf
+
+:triangular_flag_on_post: **Telegraf** application package.
+
+## Author
+
+**Kevin Doolaeghe**
+
+## Setup
+
+```
+docker-compose -p telegraf up -d
+```
+
+:warning: This program require a docker instance to be executed.
+
+## Configuration
+
+* Sample `telegraf.conf` file :
+```
 [global_tags]
 
 [agent]
-  interval = "30s"
+  interval = "60s"
   round_interval = true
   metric_batch_size = 1000
   metric_buffer_limit = 10000
@@ -14,24 +34,10 @@
 
 [[outputs.influxdb]]
   urls = ["http://influxdb:8086"]
-  database = "<database>"
+  database = "influxdb"
   timeout = "5s"
-  username = "<username>"
-  password = "<password>"
-
-[[inputs.docker]]
-  endpoint = "unix:///var/run/docker.sock"
-  gather_services = false
-  container_names = []
-  source_tag = false
-  container_name_include = []
-  container_name_exclude = []
-  timeout = "5s"
-  perdevice = true
-  total = false
-  docker_label_include = []
-  docker_label_exclude = []
-  tag_env = ["JAVA_HOME", "HEAP_SIZE"]
+  username = "admin"
+  password = "admin"
 
 [[inputs.cpu]]
   percpu = true
@@ -45,3 +51,8 @@
 [[inputs.mem]]
 
 [[inputs.processes]]
+```
+
+## References
+
+* [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/)

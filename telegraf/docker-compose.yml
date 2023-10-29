@@ -5,7 +5,16 @@ services:
     container_name: telegraf
     image: telegraf
     restart: always
+    environment:
+      - HOST_ETC=$HOST_ETC
+      - HOST_PROC=$HOST_PROC
+      - HOST_SYS=$HOST_SYS
+      - HOST_VAR=$HOST_VAR
+      - HOST_RUN=$HOST_RUN
+      - HOST_MOUNT_PREFIX=$HOST_MOUNT_PREFIX
     volumes:
+      - /:/hostfs:ro
+      - /var/run/docker.sock:/var/run/docker.sock
       - ./telegraf.conf:/etc/telegraf/telegraf.conf
       - config:/etc/telegraf
     networks:
