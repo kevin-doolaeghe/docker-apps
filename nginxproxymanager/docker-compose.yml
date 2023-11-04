@@ -13,12 +13,12 @@ services:
     volumes:
       - data:/data
       - certs:/etc/letsencrypt
-    networks:
-      - local
+#     networks:
+#       - local
 
 volumes:
   data:
   certs:
 
-networks:
-  local:
+# networks:
+#   local:
