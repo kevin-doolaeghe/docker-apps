@@ -5,7 +5,7 @@ services:
     container_name: nginxproxymanager
     image: jc21/nginx-proxy-manager:latest
     restart: always
-    network_mode: bridge
+#     network_mode: bridge
     ports:
       - 80:80
       - 443:443
@@ -13,12 +13,12 @@ services:
     volumes:
       - data:/data
       - certs:/etc/letsencrypt
-#     networks:
-#       - local
+    networks:
+      - local
 
 volumes:
   data:
   certs:
 
-# networks:
-#   local:
+networks:
+  local:
